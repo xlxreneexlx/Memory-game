@@ -70,7 +70,9 @@ function checkForMatch() {
      toggledCards[1].classList.toggle("match");
      toggledCards = [];
      matched++;
-     checkWin();
+         if (matched === 8) {
+     		checkWin();
+     	}
       }
     else {
      setTimeout(() => {
@@ -96,10 +98,11 @@ function addMove() {
 }
 
 function checkScore() {
-	if (moves === 14 || moves === 20 || moves === 24 || moves === 30) {
+	if (moves === 20 || moves === 25) {
 		hideStar();
 	}
 }
+
 
 function hideStar() {
 	const starList = document.querySelectorAll('.stars li');
@@ -215,10 +218,7 @@ function resetStars() {
 }
 
 function checkWin() {
-    matched += 1;
-    if (matched === 8) {
         gameOver();
-    }
 };
 
 function gameOver() {
@@ -230,7 +230,6 @@ function gameOver() {
 shuffleDeck();
 writeModalStats();
 checkWin();
-
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
