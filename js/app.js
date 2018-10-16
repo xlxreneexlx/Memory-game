@@ -37,8 +37,8 @@ deck.addEventListener('click', event => {
 		addToggleCard(clickTarget);
 
 	if (toggledCards.length === 2) {
-			checkForMatch(clickTarget);
 			addMove();
+			checkForMatch(clickTarget);
 			checkScore();
 		}
 	}
@@ -90,11 +90,13 @@ function shuffleDeck() {
 		deck.appendChild(card);
 	}
 }
+shuffleDeck();
 
 function addMove() {
-	moves++;
-	const movesText = document.querySelector('.moves');
-	movesText.innerHTML = moves;
+    moves++;
+    const movesText = document.querySelector('.moves');
+    movesText.innerHTML = moves;
+	console.log(moves);
 }
 
 function checkScore() {
@@ -177,17 +179,17 @@ function resetGame() {
 	resetClockAndTime();
 	resetMoves();
 	resetStars();
-	resetCards();
-	shuffleDeck();
-	
+    toggledCards = [];
+    shuffleDeck();
+    matched = 0;
 }
 
 function replayGame() {
-	matched = 0;
 	resetGame();
 	toggleModal();
 	resetCards();
 	resetStars();
+	resetMoves();
 }
 
 function resetCards() {
@@ -218,7 +220,7 @@ function resetStars() {
 }
 
 function checkWin() {
-        gameOver();
+    gameOver();
 };
 
 function gameOver() {
@@ -227,9 +229,9 @@ function gameOver() {
 	toggleModal();
 }
 
-shuffleDeck();
-writeModalStats();
-checkWin();
+
+
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
